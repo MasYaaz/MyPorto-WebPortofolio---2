@@ -3,10 +3,17 @@
   import { FontAwesomeIcon } from "@fortawesome/svelte-fontawesome";
   import {
     faCalendarAlt,
+    faCameraAlt,
+    faCameraRetro,
     faEnvelope,
+    faGlobe,
     faHome,
+    faMobileAlt,
+    faMobileAndroid,
+    faObjectUngroup,
     faPhone,
     faUser,
+    faVideoCamera,
   } from "@fortawesome/free-solid-svg-icons";
   import { onMount, tick, onDestroy } from "svelte";
   import { slide } from "svelte/transition";
@@ -260,10 +267,10 @@
 
     <!-- KANAN: Konten 2 -->
     <div
-      class="flex flex-col w-full md:w-2/5 text-center overflow-hidden text-secondary"
+      class="flex p-5 pt-0 flex-col w-full md:w-2/5 text-center overflow-hidden text-secondary"
     >
       <div
-        class="flex flex-col text-center mb-10 md:text-justify text-secondary bg-dark2 p-6 rounded-2xl shadow-xl"
+        class="shadow-light shadow-2xl/10 flex flex-col text-center mb-10 md:text-justify text-secondary bg-dark2 p-6 rounded-2xl shadow-xl"
       >
         <h2
           class="text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold uppercase mb-2"
@@ -277,18 +284,18 @@
           administrasi dan pencatatan data.
         </p>
       </div>
-      <div class="bg-dark2 p-2 mb-5 rounded-2xl shadow-xl">
+      <div class="bg-dark2 p-2 mb-5 rounded-2xl shadow-xl shadow-light shadow-2xl/10">
         <h2
           class="text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold uppercase mb-2"
         >
           Profil Saya
         </h2>
       </div>
-      <div class="flex flex-col md:flex-row lg:flex gap-4 px-4">
+      <div class="flex flex-col md:flex-row lg:flex-col gap-4 px-4">
         <!-- Kolom Kiri -->
         <div class="md:w-1/2 w-full lg:w-full">
           <div
-            class="mb-6 flex flex-col items-center md:items-center text-center md:text-center"
+            class="mb-6 flex flex-col items-center text-center md:text-center"
           >
             <FontAwesomeIcon icon={faUser} class="text-secondary fa-3x mb-3" />
             <p
@@ -298,7 +305,7 @@
             </p>
           </div>
           <div
-            class="mb-6 flex flex-col items-center md:items-center text-center md:text-center"
+            class="mb-6 flex flex-col items-center text-center md:text-center"
           >
             <FontAwesomeIcon
               icon={faCalendarAlt}
@@ -315,7 +322,7 @@
         <!-- Kolom Kanan -->
         <div class="md:w-1/2 w-full lg:w-full">
           <div
-            class="mb-6 flex flex-col items-center md:items-center text-center md:text-center"
+            class="mb-6 flex flex-col items-center text-center md:text-center"
           >
             <FontAwesomeIcon
               icon={faEnvelope}
@@ -328,7 +335,7 @@
             </p>
           </div>
           <div
-            class="mb-6 flex flex-col items-center md:items-center text-center md:text-center"
+            class="mb-6 flex flex-col items-center text-center md:text-center"
           >
             <FontAwesomeIcon icon={faPhone} class="text-secondary fa-3x mb-3" />
             <p
@@ -343,62 +350,101 @@
   </section>
 
   <section
-    class="w-full min-h-screen bg-dark2 px-6 md:px-16 lg:px-32 py-12 flex flex-col items-center justify-center gap-8 md:pt-30"
+    class="w-full min-h-screen bg-dark2 px-6 md:px-16 lg:px-32 py-12 flex flex-col items-center gap-8 md:pt-30"
     id="section_3"
   >
     <div
-      class="bg-dark4 p-5 mb-5 w-60 md:w-70 lg:w-80 xl:w-100 2xl:w-120 text-center rounded-2xl shadow-xl"
+      class="bg-dark4 shadow-light shadow-2xl/20 p-2 md:p-5 mb-5 w-60 md:w-70 lg:w-80 xl:w-100 2xl:w-120 text-center rounded-2xl shadow-xl"
     >
       <h2
-        class="text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-black uppercase mb-2"
+        class="text-3xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-black text-light uppercase mb-2"
       >
         MY SKILLS
       </h2>
     </div>
-    <div class="flex flex-col md:flex-row w-auto gap-4 px-4">
+    <div class="flex flex-wrap 2xl:flex-nowrap justify-center gap-5 px-4">
       <div
-        class="mb-6 flex flex-col items-center md:items-center text-center md:text-center md:basis-1/4"
+        class="w-full md:w-[50%] xl:w-[40%] 2xl:w-1/4 mb-6 flex flex-col items-center text-center"
       >
-        <FontAwesomeIcon icon={faUser} class="text-secondary fa-3x mb-3" />
+        <FontAwesomeIcon icon={faGlobe} 
+        class="text-secondary fa-5x md:fa-3x md:mb-3" />
         <p
-          class="break-words w-full font-bold text-secondary text-sm md:text-sm lg:text-lg xl:text-xl 2xl:text-2xl"
+          class="break-words w-full uppercase font-bold text-light p-2 text-2xl md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl"
         >
-          Aflah Mahdi Yazdi
+          Web Development
         </p>
+        <div class="w-fit md:mt-1 md:w-80 md:h-fit xl:h-80 bg-light3 p-6 rounded-2xl shadow-light shadow-2xl/25">
+          <p
+            class="break-words w-full font-display text-dark2 text-sm md:text-sm lg:text-md xl:text-lg 2xl:text-xl"
+          >
+            Butuh website buat jualan online, atau website untuk admin kantor?
+            Saya dapat membuatnya dengan menggunakan HTML, CSS dan juga
+            Javascript. Di jamin responsif bisa dibuka di mana saja.
+          </p>
+        </div>
       </div>
       <div
-        class="mb-6 flex flex-col items-center md:items-center text-center md:text-center md:basis-1/4"
+        class="w-full md:w-[50%] xl:w-[40%] 2xl:w-1/4 mb-6 flex flex-col items-center text-center"
       >
         <FontAwesomeIcon
-          icon={faCalendarAlt}
-          class="text-secondary fa-3x mb-3"
+          icon={faMobileAlt}
+          class="text-secondary fa-5x md:fa-3x md:mb-3"
         />
         <p
-          class="break-words w-full font-bold text-secondary text-sm md:text-sm lg:text-lg xl:text-xl 2xl:text-2xl"
+          class="break-words w-full uppercase font-bold text-light p-2 text-2xl md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl"
         >
-          22 Desember 2005
+          App Development
         </p>
+        <div class="w-fit md:mt-1 md:w-80 md:h-fit xl:h-80 bg-light3 p-6 rounded-2xl shadow-light shadow-2xl/25">
+          <p
+            class="break-words w-full font-display text-dark2 text-sm md:text-sm lg:text-md xl:text-lg 2xl:text-xl"
+          >
+            Butuh website buat jualan online, atau website untuk admin kantor?
+            Saya dapat membuatnya dengan menggunakan HTML, CSS dan juga
+            Javascript. Di jamin responsif bisa dibuka di mana saja.
+          </p>
+        </div>
       </div>
 
       <div
-        class="mb-6 flex flex-col items-center md:items-center text-center md:text-center md:basis-1/4"
+        class="w-full md:w-[50%] xl:w-[40%] 2xl:w-1/4 mb-6 flex flex-col items-center text-center"
       >
-        <FontAwesomeIcon icon={faEnvelope} class="text-secondary fa-3x mb-3" />
+        <FontAwesomeIcon icon={faObjectUngroup} 
+        class="text-secondary fa-5x md:fa-3x md:mb-3" />
         <p
-          class="break-words w-full font-bold text-secondary text-sm md:text-[12px] lg:text-lg xl:text-xl 2xl:text-2xl"
+          class="break-words w-full uppercase font-bold text-light p-2 text-2xl md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl"
         >
-          Diyaz.hal22@gmail.com
+          Desain Grafis
         </p>
+        <div class="w-fit md:w-80 md:h-fit xl:h-80 bg-light3 p-6 rounded-2xl shadow-light shadow-2xl/25">
+          <p
+            class="break-words w-full font-display text-dark2 text-sm md:text-sm lg:text-md xl:text-lg 2xl:text-xl"
+          >
+            Butuh website buat jualan online, atau website untuk admin kantor?
+            Saya dapat membuatnya dengan menggunakan HTML, CSS dan juga
+            Javascript. Di jamin responsif bisa dibuka di mana saja.
+          </p>
+        </div>
       </div>
       <div
-        class="mb-6 flex flex-col items-center md:items-center text-center md:text-center md:basis-1/4"
+        class="w-full md:w-[50%] xl:w-[40%] 2xl:w-1/4 mb-6 flex flex-col items-center text-center"
       >
-        <FontAwesomeIcon icon={faPhone} class="text-secondary fa-3x mb-3" />
+        <FontAwesomeIcon icon={faCameraAlt} 
+        class="text-secondary fa-5x md:fa-3x md:mb-3" />
         <p
-          class="break-words w-full font-bold text-secondary text-sm md:text-sm lg:text-lg xl:text-xl 2xl:text-2xl"
+          class="break-words w-full uppercase font-bold text-light p-2 text-2xl md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl"
         >
-          +62-823-3304-4295
+          Fotografi
         </p>
+        <div class="w-fit md:w-80 md:h-fit xl:h-80 bg-light3 p-6 rounded-2xl shadow-light shadow-2xl/25">
+          <p
+            class="break-words w-full font-display text-dark2 text-sm md:text-sm lg:text-md xl:text-lg 2xl:text-xl"
+          >
+            Butuh website buat jualan online, atau website untuk admin kantor?
+            Saya dapat membuatnya dengan menggunakan HTML, CSS dan juga
+            Javascript. Di jamin responsif bisa dibuka di mana saja.
+          </p>
+        </div>
       </div>
     </div>
   </section>
