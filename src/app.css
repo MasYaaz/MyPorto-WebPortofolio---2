@@ -1,6 +1,15 @@
 @import "tailwindcss";
 @theme {
   --font-display: 'Montserrat', sans-serif;
+  --color-primary: #212529;
+  --color-secondary: #E9ECEF;
+  --color-light: #F8F9FA;
+  --color-light2: #DEE2E6;
+  --color-light3: #CED4DA;
+  --color-dark: #343A40;
+  --color-dark2: #495057;
+  --color-dark3: #6C757D;
+  --color-dark4: #ADB5BD;
 }
 
 html {
