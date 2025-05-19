@@ -94,7 +94,7 @@
 
 <header>
   <div
-    class="w-full fixed top-0 z-50 pl-3 pr-3 md:pl-6 md:pr-6 lg:pl-8 lg:pr-8 xl:pl-10 xl:pr-10 2xl:pl-12 2xl:pr-12 h-10 md:h-12 lg:h-14 2xl:h-20 flex bg-primary/80 justify-between"
+    class="w-full fixed top-0 z-50 pl-3 pr-3 md:pl-6 md:pr-6 lg:pl-8 lg:pr-8 xl:pl-10 xl:pr-10 2xl:pl-12 2xl:pr-12 h-10 md:h-12 2xl:h-16 flex bg-primary/80 justify-between"
   >
     <div class="pr-2 md:pr-5 basis-1/3 flex items-center">
       <img
@@ -589,7 +589,7 @@
       <h3 class="text-xl font-semibold text-dark mb-2">Ikuti Saya</h3>
       <div class="flex space-x-4">
         
-        <a target="_blank" href="#" aria-label="Instagram" class="hover:text-dark">
+        <a target="_blank" href="https://www.instagram.com/mas_yazz22/" aria-label="Instagram" class="hover:text-dark">
           <FontAwesomeIcon icon={faInstagram} class="text-dark text-xl" />
         </a>
         <a target="_blank" href="https://www.linkedin.com/in/aflah-mahdi-yazdi-a69414355/" aria-label="LinkedIn" class="hover:text-dark">
