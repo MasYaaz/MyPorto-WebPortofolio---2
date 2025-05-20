@@ -320,7 +320,14 @@
       </div>
 
       <!-- Profil Saya -->
-      <div class="bg-dark2 shadow-xl p-6 rounded-2xl space-y-6">
+      <div
+        bind:this={card2Section2R}
+        class:-translate-x-24={!card2Section2T}
+        class:opacity-0={!card2Section2T}
+        class:translate-x-0={card2Section2T}
+        class:opacity-100={card2Section2T}
+        class="bg-dark2 shadow-xl p-6 rounded-2xl space-y-6 transition-all duration-700 ease-out transform"
+      >
         <h2
           class="font-primary text-xl md:text-2xl lg:text-3xl font-bold uppercase text-center mb-4"
         >
@@ -329,12 +336,7 @@
 
         <!-- Data Profil Grid -->
         <div
-          bind:this={card2Section2R}
-          class:-translate-x-24={!card2Section2T}
-          class:opacity-0={!card2Section2T}
-          class:translate-x-0={card2Section2T}
-          class:opacity-100={card2Section2T}
-          class="grid grid-cols-1 sm:grid-cols-2 p-1 gap-6 transition-all duration-700 ease-out transform"
+          class="grid grid-cols-1 sm:grid-cols-2 p-1 gap-6"
         >
           <!-- Nama -->
           <div class="flex flex-col items-center text-center">
