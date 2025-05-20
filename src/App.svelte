@@ -11,7 +11,6 @@
     faCameraAlt,
     faEnvelope,
     faGlobe,
-    faMobileAlt,
     faObjectUngroup,
     faPhone,
     faUser,
@@ -22,9 +21,28 @@
 
   let halamanAktif = "section_1";
   let menuTerbuka = false;
-  let terlihat = false;
-  let gambarRef;
-  let aboutRef;
+
+  // Refs
+  let gambarRef, aboutRef;
+  let card1Section2R, card2Section2R;
+  let card1Section3R, card2Section3R, card3Section3R, card4Section3R;
+  let card1Section4R, card2Section4R, card3Section4R, card4Section4R;
+
+  // Visibility Flags
+  let gambarTerlihat = false;
+  let aboutTerlihat = false;
+  let card1Section2T = false;
+  let card2Section2T = false;
+  let card1Section3T = false;
+  let card2Section3T = false;
+  let card3Section3T = false;
+  let card4Section3T = false;
+  let card1Section4T = false;
+  let card2Section4T = false;
+  let card3Section4T = false;
+  let card4Section4T = false;
+
+  // Observer
   let observer;
 
   const navItems = [
@@ -74,26 +92,58 @@
     observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            if (entry.target === gambarRef) terlihat = true;
-            if (entry.target === aboutRef) terlihat = true;
+          const isVisible = entry.isIntersecting;
+
+          if (entry.target === gambarRef) {
+            gambarTerlihat = isVisible;
           }
+
+          if (entry.target === aboutRef) {
+            aboutTerlihat = isVisible;
+            if (isVisible) gambarTerlihat = false;
+          }
+
+          if (entry.target === card1Section2R) card1Section2T = isVisible;
+          if (entry.target === card2Section2R) card2Section2T = isVisible;
+
+          if (entry.target === card1Section3R) card1Section3T = isVisible;
+          if (entry.target === card2Section3R) card2Section3T = isVisible;
+          if (entry.target === card3Section3R) card3Section3T = isVisible;
+          if (entry.target === card4Section3R) card4Section3T = isVisible;
+
+          if (entry.target === card1Section4R) card1Section4T = isVisible;
+          if (entry.target === card2Section4R) card2Section4T = isVisible;
+          if (entry.target === card3Section4R) card3Section4T = isVisible;
+          if (entry.target === card4Section4R) card4Section4T = isVisible;
         });
       },
       {
-        threshold: 0.3, // Muncul 30% baru trigger animasi
+        threshold: 0.3,
       }
     );
 
-    if (gambarRef) observer.observe(gambarRef);
-    if (aboutRef) observer.observe(aboutRef);
+    // Observing all refs
+    [
+      gambarRef,
+      aboutRef,
+      card1Section2R,
+      card2Section2R,
+      card1Section3R,
+      card2Section3R,
+      card3Section3R,
+      card4Section3R,
+      card1Section4R,
+      card2Section4R,
+      card3Section4R,
+      card4Section4R,
+    ].forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
   });
 
   onDestroy(() => {
-    window.removeEventListener("scroll", handleScroll);
     if (observer) {
-      if (gambarRef) observer.unobserve(gambarRef);
-      if (aboutRef) observer.unobserve(aboutRef);
+      observer.disconnect();
     }
   });
 </script>
@@ -174,10 +224,10 @@
     <div
       bind:this={gambarRef}
       class="relative z-10 transition-all duration-700 ease-out transform md:basis-1/2 flex justify-center"
-      class:translate-y-100={!terlihat}
-      class:opacity-0={!terlihat}
-      class:translate-y-15={terlihat}
-      class:opacity-100={terlihat}
+      class:translate-y-100={!gambarTerlihat}
+      class:opacity-0={!gambarTerlihat}
+      class:translate-y-15={gambarTerlihat}
+      class:opacity-100={gambarTerlihat}
     >
       <img
         src="./images/fullbody.png"
@@ -193,20 +243,20 @@
       <p
         bind:this={gambarRef}
         class="font-primary text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase font-bold transition-all duration-700 ease-out transform"
-        class:-translate-y-10={!terlihat}
-        class:opacity-0={!terlihat}
-        class:translate-y-15={terlihat}
-        class:opacity-100={terlihat}
+        class:-translate-y-10={!gambarTerlihat}
+        class:opacity-0={!gambarTerlihat}
+        class:translate-y-15={gambarTerlihat}
+        class:opacity-100={gambarTerlihat}
       >
         Welcome
       </p>
       <p
         bind:this={gambarRef}
         class="font-primary font-medium text-base sm:text-lg md:text-xl lg:text-3xl uppercase tracking-[1.5px] transition-all duration-700 ease-out transform"
-        class:-translate-y-10={!terlihat}
-        class:opacity-0={!terlihat}
-        class:translate-y-10={terlihat}
-        class:opacity-100={terlihat}
+        class:-translate-y-10={!gambarTerlihat}
+        class:opacity-0={!gambarTerlihat}
+        class:translate-y-10={gambarTerlihat}
+        class:opacity-100={gambarTerlihat}
       >
         to my web
       </p>
@@ -214,10 +264,10 @@
         href="#section_2"
         bind:this={gambarRef}
         class="font-primary mt-6 bg-dark3 hover:bg-dark4 text-secondary hover:text-light rounded-xl text-sm sm:text-base md:text-lg lg:text-xl py-2 px-5 uppercase shadow transition-all duration-300 ease-out transform"
-        class:-translate-y-10={!terlihat}
-        class:opacity-0={!terlihat}
-        class:translate-y-10={terlihat}
-        class:opacity-100={terlihat}
+        class:-translate-y-10={!gambarTerlihat}
+        class:opacity-0={!gambarTerlihat}
+        class:translate-y-10={gambarTerlihat}
+        class:opacity-100={gambarTerlihat}
       >
         About Me
       </a>
@@ -236,24 +286,31 @@
         alt="Foto Personal"
         bind:this={aboutRef}
         class="w-full aspect-square object-cover rounded-3xl shadow-xl transition-all duration-700 ease-out transform"
-        class:-translate-x-24={!terlihat}
-        class:opacity-0={!terlihat}
-        class:translate-x-0={terlihat}
-        class:opacity-100={terlihat}
+        class:-translate-x-24={!aboutTerlihat}
+        class:opacity-0={!aboutTerlihat}
+        class:translate-x-0={aboutTerlihat}
+        class:opacity-100={aboutTerlihat}
       />
     </div>
 
     <!-- KANAN: Konten -->
     <div class="w-full md:w-1/2 text-secondary space-y-8">
       <!-- Tentang Saya -->
-      <div class="bg-dark2 shadow-xl p-6 rounded-2xl">
+      <div
+        bind:this={card1Section2R}
+        class:-translate-x-24={!card1Section2T}
+        class:opacity-0={!card1Section2T}
+        class:translate-x-0={card1Section2T}
+        class:opacity-100={card1Section2T}
+        class="bg-dark2 shadow-xl p-6 rounded-2xl transition-all duration-700 ease-out transform"
+      >
         <h2
           class="font-primary text-2xl md:text-3xl lg:text-4xl font-bold uppercase mb-4 text-center md:text-left"
         >
           Tentang Saya
         </h2>
         <p
-          class="font-display text-sm md:text-base lg:text-lg xl:text-xl leading-relaxed text-center md:text-justify"
+          class="font-display text-sm md:text-sm lg:text-lg xl:text-xl leading-relaxed text-center md:text-justify"
         >
           Saya seorang Front-End developer yang terbiasa mendesain web dari yang
           sederhana sampai cukup kompleks. Saya juga memiliki pengalaman dalam
@@ -271,14 +328,23 @@
         </h2>
 
         <!-- Data Profil Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 p-1 gap-6">
+        <div
+          bind:this={card2Section2R}
+          class:-translate-x-24={!card2Section2T}
+          class:opacity-0={!card2Section2T}
+          class:translate-x-0={card2Section2T}
+          class:opacity-100={card2Section2T}
+          class="grid grid-cols-1 sm:grid-cols-2 p-1 gap-6 transition-all duration-700 ease-out transform"
+        >
           <!-- Nama -->
           <div class="flex flex-col items-center text-center">
             <FontAwesomeIcon
               icon={faUser}
               class="text-secondary text-3xl mb-2"
             />
-            <p class="font-primary text-sm md:text-sm lg:text-md xl:text-xl break-words">
+            <p
+              class="font-primary text-sm md:text-sm lg:text-md xl:text-xl break-words"
+            >
               Aflah Mahdi Yazdi
             </p>
           </div>
@@ -289,7 +355,9 @@
               icon={faCalendarAlt}
               class="text-secondary text-3xl mb-2"
             />
-            <p class="font-primary text-sm md:text-sm lg:text-md xl:text-xl break-words">
+            <p
+              class="font-primary text-sm md:text-sm lg:text-md xl:text-xl break-words"
+            >
               22 Desember 2005
             </p>
           </div>
@@ -300,7 +368,9 @@
               icon={faEnvelope}
               class="text-secondary text-3xl mb-2"
             />
-            <p class="font-primary text-sm md:text-[10px] lg:text-[10px] xl:text-lg break-words">
+            <p
+              class="font-primary text-sm md:text-[10px] lg:text-[10px] xl:text-lg break-words"
+            >
               Diyaz.hal22@gmail.com
             </p>
           </div>
@@ -311,7 +381,9 @@
               icon={faPhone}
               class="text-secondary text-3xl mb-2"
             />
-            <p class="font-primary text-sm md:text-sm lg:text-md xl:text-lg break-words">
+            <p
+              class="font-primary text-sm md:text-sm lg:text-md xl:text-lg break-words"
+            >
               +62-823-3304-4295
             </p>
           </div>
@@ -326,7 +398,12 @@
     id="section_3"
   >
     <div
-      class="bg-dark4 shadow-light shadow-2xl/20 p-2 md:p-5 mb-10 w-60 md:w-70 lg:w-80 xl:w-100 2xl:w-120 text-center rounded-2xl shadow-xl"
+      bind:this={card1Section3R}
+      class:-translate-x-24={!card1Section3T}
+      class:opacity-0={!card1Section3T}
+      class:translate-x-0={card1Section3T}
+      class:opacity-100={card1Section3T}
+      class="bg-dark4 shadow-light shadow-2xl/20 p-2 md:p-5 mb-10 w-60 md:w-70 lg:w-80 xl:w-100 2xl:w-120 text-center rounded-2xl shadow-xl transition-all duration-700 ease-out transform"
     >
       <h2
         class="font-primary text-3xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-extrabold text-light mb-2"
@@ -339,7 +416,12 @@
     >
       <!-- Kartu 1 -->
       <div
-        class="w-full md:w-[50%] xl:w-[40%] 2xl:w-1/4 mb-6 flex flex-col items-center text-center"
+        bind:this={card2Section3R}
+        class:-translate-x-24={!card2Section3T}
+        class:opacity-0={!card2Section3T}
+        class:translate-x-0={card2Section3T}
+        class:opacity-100={card2Section3T}
+        class="w-full lg:w-1/3 mb-6 flex flex-col items-center text-center transition-all duration-700 ease-out transform"
       >
         <button>
           <FontAwesomeIcon
@@ -373,41 +455,12 @@
 
       <!-- Kartu 2 -->
       <div
-        class="w-full md:w-[50%] xl:w-[40%] 2xl:w-1/4 mb-6 flex flex-col items-center text-center"
-      >
-        <button>
-          <FontAwesomeIcon
-            icon={faMobileAlt}
-            class="text-secondary fa-5x md:fa-3x md:mb-3 hover:scale-115 transition-transform duration-300"
-          />
-        </button>
-        <p
-          class="font-primary break-words w-full font-bold text-light p-2 text-2xl md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl"
-        >
-          APP Development
-        </p>
-        <div
-          class="w-fit md:mt-1 md:w-80 bg-light3 p-6 rounded-2xl shadow-light shadow-2xl/25 flex flex-col justify-between flex-1 h-full"
-        >
-          <p
-            class="break-words w-full font-display text-dark2 text-sm md:text-sm lg:text-md xl:text-lg 2xl:text-xl"
-          >
-            Mau punya aplikasi sendiri buat bisnis anda? Silahkan hubungi Saya
-            untuk membuatnya. Saya menggunakan bahasa pemrograman Java untuk
-            pengembangan aplikasi.
-          </p>
-          <hr class="border-t-3 mt-10 border-dark2" />
-          <button
-            class="mt-4 self-center text-dark2 hover:cursor-pointer hover:text-dark hover:scale-105 transition-all duration-300"
-          >
-            <FontAwesomeIcon icon={faSearch} class="fa-2x" />
-          </button>
-        </div>
-      </div>
-
-      <!-- Kartu 3 -->
-      <div
-        class="w-full md:w-[50%] xl:w-[40%] 2xl:w-1/4 mb-6 flex flex-col items-center text-center"
+        bind:this={card3Section3R}
+        class:-translate-x-24={!card3Section3T}
+        class:opacity-0={!card3Section3T}
+        class:translate-x-0={card3Section3T}
+        class:opacity-100={card3Section3T}
+        class="w-full lg:w-1/3 mb-6 flex flex-col items-center text-center transition-all duration-700 ease-out transform"
       >
         <button>
           <FontAwesomeIcon
@@ -438,9 +491,14 @@
         </div>
       </div>
 
-      <!-- Kartu 4 -->
+      <!-- Kartu 3 -->
       <div
-        class="w-full md:w-[50%] xl:w-[40%] 2xl:w-1/4 mb-6 flex flex-col items-center text-center"
+        bind:this={card4Section3R}
+        class:-translate-x-24={!card4Section3T}
+        class:opacity-0={!card4Section3T}
+        class:translate-x-0={card4Section3T}
+        class:opacity-100={card4Section3T}
+        class="w-full lg:w-1/3 mb-6 flex flex-col items-center text-center transition-all duration-700 ease-out transform"
       >
         <button>
           <FontAwesomeIcon
@@ -480,7 +538,12 @@
     id="section_4"
   >
     <div
-      class="bg-dark4 shadow-light shadow-2xl/20 p-5 md:p-7 mb-10 w-80 md:w-100 lg:w-120 xl:w-140 2xl:w-160 text-center rounded-2xl shadow-xl"
+      bind:this={card1Section4R}
+      class:-translate-x-24={!card1Section4T}
+      class:opacity-0={!card1Section4T}
+      class:translate-x-0={card1Section4T}
+      class:opacity-100={card1Section4T}
+      class="bg-dark4 shadow-light shadow-2xl/20 p-5 md:p-7 mb-10 w-80 md:w-100 lg:w-120 xl:w-140 2xl:w-160 text-center rounded-2xl shadow-xl transition-all duration-700 ease-out transform"
     >
       <h2
         class="font-primary text-3xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-black text-light mb-2"
@@ -492,7 +555,14 @@
       class="flex gap-20 flex-col md:flex-row 2xl:flex-nowrap justify-center md:gap-30 px-4 items-stretch"
     >
       <!-- Kartu 1 -->
-      <div class="w-full md:w-1/2">
+      <div
+        bind:this={card2Section4R}
+        class:-translate-x-24={!card2Section4T}
+        class:opacity-0={!card2Section4T}
+        class:translate-x-0={card2Section4T}
+        class:opacity-100={card2Section4T}
+        class="w-full md:w-1/2 transition-all duration-700 ease-out transform"
+      >
         <a
           href="https://github.com/MasYaaz"
           target="_blank"
@@ -507,7 +577,14 @@
       </div>
 
       <!-- Kartu 2 -->
-      <div class="w-full md:w-1/2">
+      <div
+        bind:this={card3Section4R}
+        class:-translate-x-24={!card3Section4T}
+        class:opacity-0={!card3Section4T}
+        class:translate-x-0={card3Section4T}
+        class:opacity-100={card3Section4T}
+        class="w-full md:w-1/2 transition-all duration-700 ease-out transform"
+      >
         <a
           href="https://www.shutterstock.com/g/MasYaaz"
           target="_blank"
@@ -521,7 +598,14 @@
         </a>
       </div>
     </div>
-    <p class="mt-5 md:mt-30 text-center text-light font-medium font-primary">
+    <p
+      bind:this={card4Section4R}
+      class:-translate-x-24={!card4Section4T}
+      class:opacity-0={!card4Section4T}
+      class:translate-x-0={card4Section4T}
+      class:opacity-100={card4Section4T}
+      class="mt-5 md:mt-30 text-center text-light font-medium font-primary transition-all duration-700 ease-out transform"
+    >
       -- Thanks for your attention --
     </p>
   </section>
