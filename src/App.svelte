@@ -190,13 +190,15 @@
 <main>
   <!-- Section 1 -->
   <section
-    class="w-full flex flex-col-reverse md:flex-row items-center justify-between min-h-screen bg-white scroll-mt-12 relative z-0 px-6 md:px-10 overflow-hidden"
+    class="w-full flex flex-col-reverse md:flex-row items-center justify-between min-h-screen scroll-mt-12 relative z-0 px-6 md:px-10 overflow-hidden bg-cover"
+    style="background-image: url('./images/back.jpg');"
     id="section_1"
   >
+  <div class="absolute inset-0 bg-light/60"></div>
     <!-- Gambar -->
     <div
       bind:this={gambarRef}
-      class="transition-all duration-700 ease-out transform md:basis-1/2 flex justify-center"
+      class="relative z-10 transition-all duration-700 ease-out transform md:basis-1/2 flex justify-center"
       class:translate-y-100={!terlihat}
       class:opacity-0={!terlihat}
       class:translate-y-15={terlihat}
@@ -211,7 +213,7 @@
 
     <!-- Teks + Tombol -->
     <div
-      class="flex flex-col justify-center items-center md:items-start md:basis-1/2 text-center md:text-left mt-8 md:mt-0 space-y-4"
+      class="relative z-10 flex flex-col justify-center items-center md:items-start md:basis-1/2 text-center md:text-left mt-8 md:mt-0 space-y-4"
     >
       <p
         bind:this={gambarRef}
@@ -279,7 +281,7 @@
         >
           Tentang Saya
         </h2>
-        <p class="mt-3 font-primary text-sm lg:text-lg xl:text-xl 2xl:text-2xl">
+        <p class="mt-3 font-display font-regular text-sm lg:text-lg xl:text-xl 2xl:text-2xl">
           Saya seorang Front-End developer yang terbiasa mendesain web dari yang
           sederhana sampai cukup kompleks. Saya juga memiliki pengalaman dalam
           fotografi, desain grafis menggunakan Photoshop & CorelDraw, serta
@@ -389,7 +391,7 @@
           class="w-fit md:mt-1 md:w-80 bg-light3 p-6 rounded-2xl shadow-light shadow-2xl/25 flex flex-col justify-between flex-1 h-full"
         >
           <p
-            class="font-primary break-words w-full text-dark2 text-sm md:text-sm lg:text-md xl:text-lg 2xl:text-xl"
+            class="font-display break-words w-full text-dark2 text-sm md:text-sm lg:text-md xl:text-lg 2xl:text-xl"
           >
             Butuh website buat jualan online, atau website untuk admin kantor?
             Saya dapat membuatnya dengan menggunakan HTML, CSS dan juga
@@ -423,7 +425,7 @@
           class="w-fit md:mt-1 md:w-80 bg-light3 p-6 rounded-2xl shadow-light shadow-2xl/25 flex flex-col justify-between flex-1 h-full"
         >
           <p
-            class="break-words w-full font-primary text-dark2 text-sm md:text-sm lg:text-md xl:text-lg 2xl:text-xl"
+            class="break-words w-full font-display text-dark2 text-sm md:text-sm lg:text-md xl:text-lg 2xl:text-xl"
           >
             Mau punya aplikasi sendiri buat bisnis anda? Silahkan hubungi Saya
             untuk membuatnya. Saya menggunakan bahasa pemrograman Java untuk
@@ -457,7 +459,7 @@
           class="w-fit md:w-80 bg-light3 p-6 rounded-2xl shadow-light shadow-2xl/25 flex flex-col justify-between flex-1 h-full"
         >
           <p
-            class="break-words w-full font-primary text-dark2 text-sm md:text-sm lg:text-md xl:text-lg 2xl:text-xl"
+            class="break-words w-full font-display text-dark2 text-sm md:text-sm lg:text-md xl:text-lg 2xl:text-xl"
           >
             Butuh desain yang menarik dan cepat? Saya dapat mewujudkannya dengan
             menggunakan CorelDraw dan juga Photoshop.
@@ -490,7 +492,7 @@
           class="w-fit md:w-80 bg-light3 p-6 rounded-2xl shadow-light shadow-2xl/25 flex flex-col justify-between flex-1 h-full"
         >
           <p
-            class="break-words w-full font-primary text-dark2 text-sm md:text-sm lg:text-md xl:text-lg 2xl:text-xl"
+            class="break-words w-full font-display text-dark2 text-sm md:text-sm lg:text-md xl:text-lg 2xl:text-xl"
           >
             Punya acara tapi tidak punya fotografer? Kamilah solusinya. Dengan
             lebih dari 100 portofolio, bisa dipastikan kami memiliki pengalaman
@@ -516,9 +518,9 @@
       class="bg-dark4 shadow-light shadow-2xl/20 p-5 md:p-7 mb-10 w-80 md:w-100 lg:w-120 xl:w-140 2xl:w-160 text-center rounded-2xl shadow-xl"
     >
       <h2
-        class="text-3xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-black text-light uppercase mb-2"
+        class="font-primary text-3xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-black text-light mb-2"
       >
-        Link Portofolio Saya
+        LiNK PORTOfolio Saya
       </h2>
     </div>
     <div
@@ -558,53 +560,62 @@
   </section>
 </main>
 
-<footer class="w-full bg-light2 text-dark2 px-6 py-10 font-primary">
-  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-    <!-- Kolom 1: Brand/Deskripsi -->
-    <div>
-      <img
-        src="./light-theme.svg"
-        alt="logo"
-        class="-mb-5 -mt-10 w-30 h-auto"
-      />
-      <p class="text-sm text-dark2">
-        Terima kasih telah mengunjungi portofolio saya. Jangan ragu untuk
-        menghubungi saya untuk kerja sama atau proyek!
-      </p>
-    </div>
+<footer class="relative w-full text-dark2 font-primary overflow-hidden">
+  <!-- Background Image -->
+  <div class="absolute inset-0 bg-[url('./images/back.jpg')] bg-cover bg-center"></div>
 
-    <!-- Kolom 2: Navigasi -->
-    <div>
-      <h3 class="text-xl font-semibold text-dark mb-2">Navigasi</h3>
-      <ul class="space-y-1 text-sm">
-        <li><a href="#section_1" class="hover:text-dark">Home</a></li>
-        <li><a href="#section_2" class="hover:text-dark">About me</a></li>
-        <li><a href="#section_3" class="hover:text-dark">Skills</a></li>
-        <li><a href="#section_4" class="hover:text-dark">Portofolio</a></li>
-      </ul>
-    </div>
+  <!-- Overlay Transparan -->
+  <div class="absolute inset-0 bg-white/60"></div> <!-- Ubah ke bg-black/60 jika mau gelap -->
 
-    <!-- Kolom 3: Sosial Media -->
-    <div>
-      <h3 class="text-xl font-semibold text-dark mb-2">Ikuti Saya</h3>
-      <div class="flex space-x-4">
-        
-        <a target="_blank" href="https://www.instagram.com/mas_yazz22/" aria-label="Instagram" class="hover:text-dark">
-          <FontAwesomeIcon icon={faInstagram} class="text-dark text-xl" />
-        </a>
-        <a target="_blank" href="https://www.linkedin.com/in/aflah-mahdi-yazdi-a69414355/" aria-label="LinkedIn" class="hover:text-dark">
-          <FontAwesomeIcon icon={faLinkedin} class="text-dark text-xl" />
-        </a>
-        <a target="_blank" href="https://github.com/MasYaaz" aria-label="GitHub" class="hover:text-dark">
-          <FontAwesomeIcon icon={faGithub} class="text-dark text-xl" />
-        </a>
+  <!-- Konten Footer -->
+  <div class="relative z-10 px-6 py-10">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Kolom 1: Brand/Deskripsi -->
+      <div>
+        <img
+          src="./light-theme.svg"
+          alt="logo"
+          class="-mb-5 -mt-10 w-30 h-auto"
+        />
+        <p class="text-sm text-dark2">
+          Terima kasih telah mengunjungi portofolio saya. Jangan ragu untuk
+          menghubungi saya untuk kerja sama atau proyek!
+        </p>
+      </div>
+
+      <!-- Kolom 2: Navigasi -->
+      <div>
+        <h3 class="text-xl font-semibold text-dark mb-2">Navigasi</h3>
+        <ul class="space-y-1 text-sm">
+          <li><a href="#section_1" class="hover:text-dark">Home</a></li>
+          <li><a href="#section_2" class="hover:text-dark">About me</a></li>
+          <li><a href="#section_3" class="hover:text-dark">Skills</a></li>
+          <li><a href="#section_4" class="hover:text-dark">Portofolio</a></li>
+        </ul>
+      </div>
+
+      <!-- Kolom 3: Sosial Media -->
+      <div>
+        <h3 class="text-xl font-semibold text-dark mb-2">Ikuti Saya</h3>
+        <div class="flex space-x-4">
+          <a target="_blank" href="https://www.instagram.com/mas_yazz22/" aria-label="Instagram" class="hover:text-dark">
+            <FontAwesomeIcon icon={faInstagram} class="text-dark text-xl" />
+          </a>
+          <a target="_blank" href="https://www.linkedin.com/in/aflah-mahdi-yazdi-a69414355/" aria-label="LinkedIn" class="hover:text-dark">
+            <FontAwesomeIcon icon={faLinkedin} class="text-dark text-xl" />
+          </a>
+          <a target="_blank" href="https://github.com/MasYaaz" aria-label="GitHub" class="hover:text-dark">
+            <FontAwesomeIcon icon={faGithub} class="text-dark text-xl" />
+          </a>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Garis dan copyright -->
-  <hr class="my-6 border-dark2" />
-  <p class="text-center text-sm text-dark2">
-    &copy; 2025 MyPorto - Web Portofolio . All rights reserved.
-  </p>
+    <!-- Garis dan copyright -->
+    <hr class="my-6 border-dark2" />
+    <p class="text-center text-sm text-dark2">
+      &copy; 2025 MyPorto - Web Portofolio . All rights reserved.
+    </p>
+  </div>
 </footer>
+
