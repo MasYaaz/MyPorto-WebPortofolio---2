@@ -23,10 +23,16 @@
   let halamanAktif = "section_1";
   let menuTerbuka = false;
   let terlihat = false;
-  let aboutTerlihat = false;
   let gambarRef;
   let aboutRef;
   let observer;
+
+  const navItems = [
+    { id: "section_1", label: "Home" },
+    { id: "section_2", label: "About Me" },
+    { id: "section_3", label: "My Skills" },
+    { id: "section_4", label: "Portofolio" },
+  ];
 
   function handleScroll() {
     const posisi = window.scrollY + 100; // tambahkan offset bila ada navbar
@@ -70,7 +76,7 @@
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             if (entry.target === gambarRef) terlihat = true;
-            if (entry.target === aboutRef) aboutTerlihat = true;
+            if (entry.target === aboutRef) terlihat = true;
           }
         });
       },
@@ -94,7 +100,7 @@
 
 <header>
   <div
-    class="w-full fixed top-0 z-50 pl-3 pr-3 md:pl-6 md:pr-6 lg:pl-8 lg:pr-8 xl:pl-10 xl:pr-10 2xl:pl-12 2xl:pr-12 h-10 md:h-12 2xl:h-16 flex bg-primary/80 justify-between"
+    class="w-full fixed top-0 z-50 pl-3 pr-3 md:pl-6 md:pr-6 lg:pl-8 lg:pr-8 xl:pl-10 xl:pr-10 2xl:pl-12 2xl:pr-12 h-10 md:h-14 2xl:h-16 flex bg-primary/80 justify-between"
   >
     <div class="pr-2 md:pr-5 basis-1/3 flex items-center">
       <img
@@ -127,35 +133,17 @@
 
     <!-- Ini Navbar dekstop -->
     <nav class="hidden md:flex basis-2/3 p-2 items-center justify-end">
-      <a
-        href="#section_1"
-        class="font-primary text-center mr-3 pb-1 text-[13px] md:text-[15px] md:mr-5 w-22 tracking-[1px] text-secondary hover:text-light border-b-2 hover:scale-105 transition-transform duration-75"
-        class:border-secondary={halamanAktif === "section_1"}
-        class:scale-110={halamanAktif === "section_1"}
-        class:border-transparent={halamanAktif !== "section_1"}>Home</a
-      >
-      <a
-        href="#section_2"
-        class="font-primary text-center ml-3 mr-3 pb-1 w-23 text-[13px] md:text-[15px] md:mr-5 tracking-[1px] text-secondary hover:text-light border-b-2 hover:scale-105 transition-transform duration-75"
-        class:border-secondary={halamanAktif === "section_2"}
-        class:scale-110={halamanAktif === "section_2"}
-        class:border-transparent={halamanAktif !== "section_2"}>About Me</a
-      >
-      <a
-        href="#section_3"
-        class="font-primary text-center ml-3 mr-3 pb-1 w-22 text-[13px] md:text-[15px] md:mr-5 tracking-[1px] text-secondary hover:text-light border-b-2 hover:scale-105 transition-transform duration-75"
-        class:border-secondary={halamanAktif === "section_3"}
-        class:scale-110={halamanAktif === "section_3"}
-        class:border-transparent={halamanAktif !== "section_3"}>Skills</a
-      >
-      <a
-        href="#section_4"
-        class="font-primary text-center ml-3 mr-15 pb-1 w-22 text-[13px] md:text-[15px] md:mr-5 tracking-[1px] text-secondary hover:text-light border-b-2 hover:scale-105 transition-transform duration-75"
-        class:border-secondary={halamanAktif === "section_4"}
-        class:scale-110={halamanAktif === "section_4"}
-        class:border-transparent={halamanAktif !== "section_4"}>Portofolio</a
-      >
-
+      {#each navItems as item}
+        <a
+          href={"#" + item.id}
+          class="font-primary text-center mr-4 pb-1 text-[13px] md:text-[15px] lg:mr-10 w-25 tracking-[1px] text-secondary hover:text-light border-b-2 hover:scale-105 transition-transform duration-75"
+          class:border-secondary={halamanAktif === item.id}
+          class:scale-110={halamanAktif === item.id}
+          class:border-transparent={halamanAktif !== item.id}
+        >
+          {item.label}
+        </a>
+      {/each}
     </nav>
     <!-- Menu Mobile -->
     {#if menuTerbuka}
@@ -163,26 +151,13 @@
         transition:slide={{ duration: 400 }}
         class="absolute left-0 top-10 w-full bg-primary/90 px-4 pb-4 shadow-md md:hidden"
       >
-        <a
-          href="#section_1"
-          class="font-primary text-center block py-2 border-b border-light text-secondary"
-          >Home</a
-        >
-        <a
-          href="#section_2"
-          class="font-primary text-center block py-2 border-b border-light text-secondary"
-          >About Me</a
-        >
-        <a
-          href="#section_3"
-          class="font-primary text-center block py-2 border-b border-light text-secondary"
-          >Skills</a
-        >
-        <a
-          href="#section_4"
-          class="font-primary text-center block py-2 text-secondary"
-          >Portofolio</a
-        >
+        {#each navItems as item}
+          <a
+            href={"#" + item.id}
+            class="font-primary text-center block py-2 border-b border-light text-secondary"
+            >{item.label}</a
+          >
+        {/each}
       </nav>
     {/if}
   </div>
@@ -190,11 +165,11 @@
 <main>
   <!-- Section 1 -->
   <section
-    class="w-full flex flex-col-reverse md:flex-row items-center justify-between min-h-screen scroll-mt-12 relative z-0 px-6 md:px-10 overflow-hidden bg-cover"
-    style="background-image: url('./images/back.jpg');"
+    class="w-full flex flex-col-reverse md:flex-row items-center justify-between min-h-screen scroll-mt-12 relative z-0 md:px-10 overflow-hidden bg-cover bg-[url('./images/back.jpg')]"
     id="section_1"
   >
-  <div class="absolute inset-0 bg-light/60"></div>
+    <div class="absolute inset-0 bg-light/60"></div>
+
     <!-- Gambar -->
     <div
       bind:this={gambarRef}
@@ -207,17 +182,17 @@
       <img
         src="./images/fullbody.png"
         alt="Foto"
-        class="h-[500px] md:h-[700px] lg:h-[900px] object-cover transition-all duration-200 hover:scale-110 -translate-x-5 md:translate-x-0 md:translate-y-10 xl:translate-x-20 2xl:translate-x-30"
+        class="h-[500px] sm:h-[800px] md:h-[600px] lg:h-[700px] xl:h-[850px] w-auto object-contain transition-all duration-200 hover:scale-110"
       />
     </div>
 
     <!-- Teks + Tombol -->
     <div
-      class="relative z-10 flex flex-col justify-center items-center md:items-start md:basis-1/2 text-center md:text-left mt-8 md:mt-0 space-y-4"
+      class="relative z-10 flex flex-col justify-center items-center md:items-start md:basis-1/2 text-center md:text-left mt-8 md:mt-0 space-y-4 px-4 sm:px-6"
     >
       <p
         bind:this={gambarRef}
-        class="font-primary text-5xl md:text-6xl lg:text-8xl uppercase font-bold transition-all duration-700 ease-out transform"
+        class="font-primary text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase font-bold transition-all duration-700 ease-out transform"
         class:-translate-y-10={!terlihat}
         class:opacity-0={!terlihat}
         class:translate-y-15={terlihat}
@@ -227,7 +202,7 @@
       </p>
       <p
         bind:this={gambarRef}
-        class="xl:pl-2 font-primary font-medium text-lg md:text-xl lg:text-4xl lg:pl-5 uppercase tracking-[1.5px] transition-all duration-700 ease-out transform"
+        class="font-primary font-medium text-base sm:text-lg md:text-xl lg:text-3xl uppercase tracking-[1.5px] transition-all duration-700 ease-out transform"
         class:-translate-y-10={!terlihat}
         class:opacity-0={!terlihat}
         class:translate-y-10={terlihat}
@@ -238,7 +213,7 @@
       <a
         href="#section_2"
         bind:this={gambarRef}
-        class="font-primary mt-10 bg-dark3 hover:bg-dark4 text-secondary hover:text-light rounded-xl text-sm md:text-md md:text-xl py-2 px-5 uppercase shadow transition-all duration-300 ease-out transform"
+        class="font-primary mt-6 bg-dark3 hover:bg-dark4 text-secondary hover:text-light rounded-xl text-sm sm:text-base md:text-lg lg:text-xl py-2 px-5 uppercase shadow transition-all duration-300 ease-out transform"
         class:-translate-y-10={!terlihat}
         class:opacity-0={!terlihat}
         class:translate-y-10={terlihat}
@@ -251,102 +226,92 @@
 
   <!-- Section 2 -->
   <section
-    class="w-full min-h-screen bg-dark px-6 md:px-16 lg:px-32 py-12 flex flex-col md:flex-row items-start justify-center gap-8 md:pt-30"
+    class="w-full min-h-screen bg-dark px-4 sm:px-6 md:px-10 lg:px-24 xl:px-32 py-12 flex flex-col md:flex-row items-start justify-center gap-10 md:gap-16"
     id="section_2"
   >
-    <!-- KIRI: Gambar + Konten 1 di bawahnya -->
-    <div class="flex flex-col gap-6 w-full md:w-3/5">
-      <!-- Gambar -->
+    <!-- KIRI: Gambar -->
+    <div class="flex flex-col gap-6 w-full md:w-1/2">
       <img
         src="./images/foto-personal.jpg"
         alt="Foto Personal"
         bind:this={aboutRef}
-        class="w-full aspect-square object-cover rounded-3xl shadow-xl/25 transition-all duration-700 ease-out transform"
-        class:-translate-x-24={!aboutTerlihat}
-        class:opacity-0={!aboutTerlihat}
-        class:translate-x-0={aboutTerlihat}
-        class:opacity-100={aboutTerlihat}
+        class="w-full aspect-square object-cover rounded-3xl shadow-xl transition-all duration-700 ease-out transform"
+        class:-translate-x-24={!terlihat}
+        class:opacity-0={!terlihat}
+        class:translate-x-0={terlihat}
+        class:opacity-100={terlihat}
       />
     </div>
 
-    <!-- KANAN: Konten 2 -->
-    <div
-      class="flex p-5 pt-0 flex-col w-full md:w-2/5 text-center overflow-hidden text-secondary"
-    >
-      <div
-        class="shadow-light shadow-2xl/10 flex flex-col text-center mb-10 md:text-justify text-secondary bg-dark2 p-6 rounded-2xl shadow-xl"
-      >
+    <!-- KANAN: Konten -->
+    <div class="w-full md:w-1/2 text-secondary space-y-8">
+      <!-- Tentang Saya -->
+      <div class="bg-dark2 shadow-xl p-6 rounded-2xl">
         <h2
-          class="font-primary text-2xl lg:text-3xl xl:text-4xl 2xl:text-6xl font-bold uppercase mb-2"
+          class="font-primary text-2xl md:text-3xl lg:text-4xl font-bold uppercase mb-4 text-center md:text-left"
         >
           Tentang Saya
         </h2>
-        <p class="mt-3 font-display font-regular text-sm lg:text-lg xl:text-xl 2xl:text-2xl">
+        <p
+          class="font-display text-sm md:text-base lg:text-lg xl:text-xl leading-relaxed text-center md:text-justify"
+        >
           Saya seorang Front-End developer yang terbiasa mendesain web dari yang
           sederhana sampai cukup kompleks. Saya juga memiliki pengalaman dalam
           fotografi, desain grafis menggunakan Photoshop & CorelDraw, serta
           administrasi dan pencatatan data.
         </p>
       </div>
-      <div
-        class="bg-dark2 p-3 mb-10 rounded-2xl shadow-xl shadow-light shadow-2xl/6"
-      >
+
+      <!-- Profil Saya -->
+      <div class="bg-dark2 shadow-xl p-6 rounded-2xl space-y-6">
         <h2
-          class="font-primary text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold uppercase mb-2"
+          class="font-primary text-xl md:text-2xl lg:text-3xl font-bold uppercase text-center mb-4"
         >
           Profil Saya
         </h2>
-      </div>
-      <div class="flex flex-col md:flex-row lg:flex-col gap-4 px-4">
-        <!-- Kolom Kiri -->
-        <div class="md:w-1/2 w-full lg:w-full">
-          <div
-            class="mb-8 flex flex-col items-center text-center md:text-center"
-          >
-            <FontAwesomeIcon icon={faUser} class="text-secondary fa-3x mb-3" />
-            <p
-              class="font-primary break-words w-full font-regular text-secondary text-sm md:text-sm lg:text-lg xl:text-xl 2xl:text-2xl"
-            >
+
+        <!-- Data Profil Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 p-1 gap-6">
+          <!-- Nama -->
+          <div class="flex flex-col items-center text-center">
+            <FontAwesomeIcon
+              icon={faUser}
+              class="text-secondary text-3xl mb-2"
+            />
+            <p class="font-primary text-sm md:text-sm lg:text-md xl:text-xl break-words">
               Aflah Mahdi Yazdi
             </p>
           </div>
-          <div
-            class="mb-6 flex flex-col items-center text-center md:text-center"
-          >
+
+          <!-- Tanggal Lahir -->
+          <div class="flex flex-col items-center text-center">
             <FontAwesomeIcon
               icon={faCalendarAlt}
-              class="text-secondary fa-3x mb-3"
+              class="text-secondary text-3xl mb-2"
             />
-            <p
-              class="font-primary break-words w-full font-regular text-secondary text-sm md:text-sm lg:text-lg xl:text-xl 2xl:text-2xl"
-            >
+            <p class="font-primary text-sm md:text-sm lg:text-md xl:text-xl break-words">
               22 Desember 2005
             </p>
           </div>
-        </div>
 
-        <!-- Kolom Kanan -->
-        <div class="md:w-1/2 w-full lg:w-full">
-          <div
-            class="mb-8 flex flex-col items-center text-center md:text-center"
-          >
+          <!-- Email -->
+          <div class="flex flex-col items-center text-center">
             <FontAwesomeIcon
               icon={faEnvelope}
-              class="text-secondary fa-3x mb-3"
+              class="text-secondary text-3xl mb-2"
             />
-            <p
-              class="font-primary break-words w-full font-regular text-secondary text-sm md:text-[12px] lg:text-lg xl:text-xl 2xl:text-2xl"
-            >
+            <p class="font-primary text-sm md:text-[10px] lg:text-[10px] xl:text-lg break-words">
               Diyaz.hal22@gmail.com
             </p>
           </div>
-          <div
-            class="mb-8 flex flex-col items-center text-center md:text-center"
-          >
-            <FontAwesomeIcon icon={faPhone} class="text-secondary fa-3x mb-3" />
-            <p
-              class="font-primary break-words w-full font-regular text-secondary text-sm md:text-sm lg:text-lg xl:text-xl 2xl:text-2xl"
-            >
+
+          <!-- Telepon -->
+          <div class="flex flex-col items-center text-center">
+            <FontAwesomeIcon
+              icon={faPhone}
+              class="text-secondary text-3xl mb-2"
+            />
+            <p class="font-primary text-sm md:text-sm lg:text-md xl:text-lg break-words">
               +62-823-3304-4295
             </p>
           </div>
@@ -366,7 +331,7 @@
       <h2
         class="font-primary text-3xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-extrabold text-light mb-2"
       >
-        MY sKills
+        MY SKILLS
       </h2>
     </div>
     <div
@@ -385,7 +350,7 @@
         <p
           class="font-primary break-words w-full font-bold text-light p-2 text-2xl md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl"
         >
-          WEb DEVelopment
+          WEB Development
         </p>
         <div
           class="w-fit md:mt-1 md:w-80 bg-light3 p-6 rounded-2xl shadow-light shadow-2xl/25 flex flex-col justify-between flex-1 h-full"
@@ -419,7 +384,7 @@
         <p
           class="font-primary break-words w-full font-bold text-light p-2 text-2xl md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl"
         >
-          APP DEVelopment
+          APP Development
         </p>
         <div
           class="w-fit md:mt-1 md:w-80 bg-light3 p-6 rounded-2xl shadow-light shadow-2xl/25 flex flex-col justify-between flex-1 h-full"
@@ -453,7 +418,7 @@
         <p
           class="font-primary break-words w-full font-bold text-light p-2 text-2xl md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl"
         >
-          deSAIN GRAfis
+          Desain Grafis
         </p>
         <div
           class="w-fit md:w-80 bg-light3 p-6 rounded-2xl shadow-light shadow-2xl/25 flex flex-col justify-between flex-1 h-full"
@@ -486,7 +451,7 @@
         <p
           class="font-primary break-words w-full font-bold text-light p-2 text-2xl md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl"
         >
-          FOTOgrafi
+          Fotografi
         </p>
         <div
           class="w-fit md:w-80 bg-light3 p-6 rounded-2xl shadow-light shadow-2xl/25 flex flex-col justify-between flex-1 h-full"
@@ -520,7 +485,7 @@
       <h2
         class="font-primary text-3xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-black text-light mb-2"
       >
-        LiNK PORTOfolio Saya
+        Link Portofolio Saya
       </h2>
     </div>
     <div
@@ -528,10 +493,11 @@
     >
       <!-- Kartu 1 -->
       <div class="w-full md:w-1/2">
-        <a 
+        <a
           href="https://github.com/MasYaaz"
           target="_blank"
-          aria-label="Github">
+          aria-label="Github"
+        >
           <img
             alt="Github"
             src="./images/github.svg"
@@ -545,7 +511,8 @@
         <a
           href="https://www.shutterstock.com/g/MasYaaz"
           target="_blank"
-          aria-label="Shutterstock">
+          aria-label="Shutterstock"
+        >
           <img
             alt="Shutterstock"
             src="./images/shutterstock.svg"
@@ -562,10 +529,13 @@
 
 <footer class="relative w-full text-dark2 font-primary overflow-hidden">
   <!-- Background Image -->
-  <div class="absolute inset-0 bg-[url('./images/back.jpg')] bg-cover bg-center"></div>
+  <div
+    class="absolute inset-0 bg-[url('./images/back.jpg')] bg-cover bg-center"
+  ></div>
 
   <!-- Overlay Transparan -->
-  <div class="absolute inset-0 bg-white/60"></div> <!-- Ubah ke bg-black/60 jika mau gelap -->
+  <div class="absolute inset-0 bg-white/60"></div>
+  <!-- Ubah ke bg-black/60 jika mau gelap -->
 
   <!-- Konten Footer -->
   <div class="relative z-10 px-6 py-10">
@@ -576,6 +546,7 @@
           src="./light-theme.svg"
           alt="logo"
           class="-mb-5 -mt-10 w-30 h-auto"
+          loading="lazy"
         />
         <p class="text-sm text-dark2">
           Terima kasih telah mengunjungi portofolio saya. Jangan ragu untuk
@@ -598,13 +569,28 @@
       <div>
         <h3 class="text-xl font-semibold text-dark mb-2">Ikuti Saya</h3>
         <div class="flex space-x-4">
-          <a target="_blank" href="https://www.instagram.com/mas_yazz22/" aria-label="Instagram" class="hover:text-dark">
+          <a
+            target="_blank"
+            href="https://www.instagram.com/mas_yazz22/"
+            aria-label="Instagram"
+            class="hover:text-dark"
+          >
             <FontAwesomeIcon icon={faInstagram} class="text-dark text-xl" />
           </a>
-          <a target="_blank" href="https://www.linkedin.com/in/aflah-mahdi-yazdi-a69414355/" aria-label="LinkedIn" class="hover:text-dark">
+          <a
+            target="_blank"
+            href="https://www.linkedin.com/in/aflah-mahdi-yazdi-a69414355/"
+            aria-label="LinkedIn"
+            class="hover:text-dark"
+          >
             <FontAwesomeIcon icon={faLinkedin} class="text-dark text-xl" />
           </a>
-          <a target="_blank" href="https://github.com/MasYaaz" aria-label="GitHub" class="hover:text-dark">
+          <a
+            target="_blank"
+            href="https://github.com/MasYaaz"
+            aria-label="GitHub"
+            class="hover:text-dark"
+          >
             <FontAwesomeIcon icon={faGithub} class="text-dark text-xl" />
           </a>
         </div>
@@ -618,4 +604,3 @@
     </p>
   </div>
 </footer>
-
