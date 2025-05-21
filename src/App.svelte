@@ -571,6 +571,7 @@
           aria-label="Github"
         >
           <img
+            loading="lazy"
             alt="Github"
             src="./images/github.svg"
             class="w-60 h-fit invert fa-5x md:mb-3 hover:scale-115 transition-transform duration-300"
@@ -593,6 +594,7 @@
           aria-label="Shutterstock"
         >
           <img
+            loading="lazy"
             alt="Shutterstock"
             src="./images/shutterstock.svg"
             class="w-60 h-fit p-4 md:mb-3 hover:scale-115 transition-transform duration-300"

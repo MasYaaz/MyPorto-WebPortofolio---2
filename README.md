@@ -1,6 +1,6 @@
 # MyPorto - Web Portofolio
 
-![Foto](public/images/Foto-web1.png)
+![Foto](docs/Foto-web1.png)
 
 Selamat Datang di Dokumentasi Web Portofolio kedua saya.
 Ini merupakan web portofolio kedua yang telah saya buat dengan menggunakan framework Vite + Svelte dan Tailwind CSS.
@@ -21,17 +21,17 @@ Ini merupakan web portofolio kedua yang telah saya buat dengan menggunakan frame
 
 Web ini adalah web portofolio yang didalamnya terdapat pengenalan tentang diri saya dan juga data diri serta kontak saya.
 
-![Foto](public/images/Foto-web2.png)
+![Foto](docs/Foto-web2.png)
 
 Selain itu, web ini juga menjabarkan tentang kemampuan - kemampuan yang saya miliki baik itu pemrograman web, desain grafis dan juga fotografi.Di sini
 juga ada link untuk mencari tahu tentang portofolio saya baik itu di Github ataupun Shutterstock.
 
-![Foto](public/images/Foto-web3.png)
+![Foto](docs/Foto-web3.png)
 
-![Foto](public/images/Foto-web4.png)
+![Foto](docs/Foto-web4.png)
 
-![Foto](public/images/Foto-web5.png)
+![Foto](docs/Foto-web5.png)
 
 Web ini sudah responsif sehingga tampilannya sudah bagus jika dibuka di smartphone maupun di dekstop.
 
-![Foto](public/images/Foto-web6.png)
+![Foto](docs/Foto-web6.png)
