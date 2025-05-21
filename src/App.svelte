@@ -240,7 +240,7 @@
     <div
       class="relative z-10 flex flex-col justify-center items-center md:items-start md:basis-1/2 text-center md:text-left mt-8 md:mt-0 space-y-4 px-4 sm:px-6"
     >
-      <p
+      <h1
         bind:this={gambarRef}
         class="font-primary text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase font-bold transition-all duration-700 ease-out transform"
         class:-translate-y-10={!gambarTerlihat}
@@ -249,8 +249,8 @@
         class:opacity-100={gambarTerlihat}
       >
         Welcome
-      </p>
-      <p
+      </h1>
+      <h3
         bind:this={gambarRef}
         class="font-primary font-medium text-base sm:text-lg md:text-xl lg:text-3xl uppercase tracking-[1.5px] transition-all duration-700 ease-out transform"
         class:-translate-y-10={!gambarTerlihat}
@@ -259,7 +259,7 @@
         class:opacity-100={gambarTerlihat}
       >
         to my web
-      </p>
+      </h3>
       <a
         href="#section_2"
         bind:this={gambarRef}
@@ -335,9 +335,7 @@
         </h2>
 
         <!-- Data Profil Grid -->
-        <div
-          class="grid grid-cols-1 sm:grid-cols-2 p-1 gap-6"
-        >
+        <div class="grid grid-cols-1 sm:grid-cols-2 p-1 gap-6">
           <!-- Nama -->
           <div class="flex flex-col items-center text-center">
             <FontAwesomeIcon
@@ -431,11 +429,11 @@
             class="text-secondary fa-5x md:fa-3x md:mb-3 hover:scale-115 transition-transform duration-300"
           />
         </button>
-        <p
+        <h2
           class="font-primary break-words w-full font-bold text-light p-2 text-2xl md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl"
         >
           WEB Development
-        </p>
+        </h2>
         <div
           class="w-fit md:mt-1 md:w-80 bg-light3 p-6 rounded-2xl shadow-light shadow-2xl/25 flex flex-col justify-between flex-1 h-full"
         >
@@ -470,11 +468,11 @@
             class="text-secondary fa-5x md:fa-3x md:mb-3 hover:scale-115 transition-transform duration-300"
           />
         </button>
-        <p
+        <h2
           class="font-primary break-words w-full font-bold text-light p-2 text-2xl md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl"
         >
           Desain Grafis
-        </p>
+        </h2>
         <div
           class="w-fit md:w-80 bg-light3 p-6 rounded-2xl shadow-light shadow-2xl/25 flex flex-col justify-between flex-1 h-full"
         >
@@ -508,11 +506,11 @@
             class="text-secondary fa-5x md:fa-3x md:mb-3 hover:scale-115 transition-transform duration-300"
           />
         </button>
-        <p
+        <h2
           class="font-primary break-words w-full font-bold text-light p-2 text-2xl md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl"
         >
           Fotografi
-        </p>
+        </h2>
         <div
           class="w-fit md:w-80 bg-light3 p-6 rounded-2xl shadow-light shadow-2xl/25 flex flex-col justify-between flex-1 h-full"
         >
