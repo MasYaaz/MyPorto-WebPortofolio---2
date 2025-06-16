@@ -15,9 +15,15 @@
     faPhone,
     faUser,
     faSearch,
+    faHome,
+    faPerson,
+    faPenFancy,
+    faBriefcase,
   } from "@fortawesome/free-solid-svg-icons";
   import { onMount, tick, onDestroy } from "svelte";
   import { slide } from "svelte/transition";
+  import DataProfil from "./lib/DataProfil.svelte";
+  import { icon } from "@fortawesome/fontawesome-svg-core";
 
   let halamanAktif = "section_1";
   let menuTerbuka = false;
@@ -42,14 +48,32 @@
   let card3Section4T = false;
   let card4Section4T = false;
 
+  const profilItems = [
+    {
+      icon: faUser,
+      tulisan: "Aflah Mahdi Yazdi",
+    },
+    {
+      icon: faCameraAlt,
+      tulisan: "22 Desember 2005",
+    },
+    {
+      icon: faEnvelope,
+      tulisan: "Diyaz.hal22@gmail.com",
+    },
+    {
+      icon: faPhone,
+      tulisan: "+62-823-3304-4295",
+    },
+  ];
   // Observer
   let observer;
 
   const navItems = [
-    { id: "section_1", label: "Home" },
-    { id: "section_2", label: "About Me" },
-    { id: "section_3", label: "My Skills" },
-    { id: "section_4", label: "Portofolio" },
+    { id: "section_1", label: "Home", icon: faHome },
+    { id: "section_2", label: "About Me", icon: faUser },
+    { id: "section_3", label: "My Skills", icon:faPenFancy},
+    { id: "section_4", label: "Portofolio", icon: faBriefcase },
   ];
 
   function handleScroll() {
@@ -150,9 +174,9 @@
 
 <header>
   <div
-    class="w-full fixed top-0 z-50 pl-3 pr-3 md:pl-6 md:pr-6 lg:pl-8 lg:pr-8 xl:pl-10 xl:pr-10 2xl:pl-12 2xl:pr-12 h-10 md:h-14 2xl:h-16 flex bg-primary/80 justify-between"
+    class="w-full fixed top-0 z-50 px-6 md:px-10 lg:px-24 xl:px-32 h-12 md:h-14 2xl:h-16 flex bg-primary justify-between"
   >
-    <div class="pr-2 md:pr-5 basis-1/3 flex items-center">
+    <div class="basis-1/3 flex items-center">
       <img
         src="./dark-theme.svg"
         alt="logo"
@@ -162,7 +186,7 @@
 
     <!-- Tombol hamburger -->
     <button
-      class="md:hidden pr-2 text-secondary"
+      class="md:hidden text-secondary"
       on:click={toggleMenu}
       aria-label="tombol navbar"
     >
@@ -199,13 +223,13 @@
     {#if menuTerbuka}
       <nav
         transition:slide={{ duration: 400 }}
-        class="absolute left-0 top-10 w-full bg-primary/90 px-4 pb-4 shadow-md md:hidden"
+        class="absolute right-0 top-12 w-full bg-primary/90 px-4 pb-4 shadow-md md:hidden"
       >
         {#each navItems as item}
           <a
             href={"#" + item.id}
-            class="font-primary text-center block py-2 border-b border-light text-secondary"
-            >{item.label}</a
+            class="font-primary text-left flex border-b text-secondary p-2 justify-center"
+            ><FontAwesomeIcon icon={item.icon} class="text-lg mr-2"/> {item.label}</a
           >
         {/each}
       </nav>
@@ -215,10 +239,10 @@
 <main>
   <!-- Section 1 -->
   <section
-    class="w-full flex flex-col-reverse md:flex-row items-center justify-between min-h-screen scroll-mt-12 relative z-0 md:px-10 overflow-hidden bg-cover bg-[url('./images/back.jpg')]"
+    class="w-full flex flex-col-reverse md:flex-row px-6 md:px-10 lg:px-24 xl:px-32 items-center justify-between min-h-screen scroll-mt-12 relative z-0 overflow-hidden bg-cover bg-[url('./images/back.jpg')]"
     id="section_1"
   >
-    <div class="absolute inset-0 bg-light/60"></div>
+    <div class="absolute inset-0 bg-secondary/80"></div>
 
     <!-- Gambar -->
     <div
@@ -263,7 +287,7 @@
       <a
         href="#section_2"
         bind:this={gambarRef}
-        class="font-primary mt-6 bg-dark3 hover:bg-dark4 text-secondary hover:text-light rounded-xl text-sm sm:text-base md:text-lg lg:text-xl py-2 px-5 uppercase shadow transition-all duration-300 ease-out transform"
+        class="font-primary mt-6 bg-primary hover:bg-brown text-secondary hover:text-light rounded-xl text-sm sm:text-base md:text-lg lg:text-xl py-2 px-5 uppercase shadow transition-all duration-300 ease-out transform"
         class:-translate-y-10={!gambarTerlihat}
         class:opacity-0={!gambarTerlihat}
         class:translate-y-10={gambarTerlihat}
@@ -276,16 +300,16 @@
 
   <!-- Section 2 -->
   <section
-    class="w-full min-h-screen bg-dark px-4 sm:px-6 md:px-10 lg:px-24 xl:px-32 py-12 flex flex-col md:flex-row items-start justify-center gap-10 md:gap-16"
+    class="w-full min-h-screen bg-secondary px-6 md:px-10 lg:px-24 xl:px-32 py-16 md:py-16 lg:py-18 flex flex-col xl:flex-row items-start justify-center gap-10 md:gap-16"
     id="section_2"
   >
     <!-- KIRI: Gambar -->
-    <div class="flex flex-col gap-6 w-full md:w-1/2">
+    <div class="flex flex-col gap-6 w-full">
       <img
         src="./images/foto-personal.jpg"
         alt="Foto Personal"
         bind:this={aboutRef}
-        class="w-full aspect-square object-cover rounded-3xl shadow-xl transition-all duration-700 ease-out transform"
+        class="w-full aspect-square object-cover rounded-3xl shadow-xl transition-all duration-700 ease-out transform h-100 xl:h-full"
         class:-translate-x-24={!aboutTerlihat}
         class:opacity-0={!aboutTerlihat}
         class:translate-x-0={aboutTerlihat}
@@ -294,7 +318,7 @@
     </div>
 
     <!-- KANAN: Konten -->
-    <div class="w-full md:w-1/2 text-secondary space-y-8">
+    <div class="w-full text-secondary space-y-8 xl:h-full">
       <!-- Tentang Saya -->
       <div
         bind:this={card1Section2R}
@@ -302,7 +326,7 @@
         class:opacity-0={!card1Section2T}
         class:translate-x-0={card1Section2T}
         class:opacity-100={card1Section2T}
-        class="bg-dark2 shadow-xl p-6 rounded-2xl transition-all duration-700 ease-out transform"
+        class="bg-brown shadow-xl p-6 rounded-2xl transition-all duration-700 ease-out transform xl:h-1/2"
       >
         <h2
           class="font-primary text-2xl md:text-3xl lg:text-4xl font-bold uppercase mb-4 text-center md:text-left"
@@ -326,7 +350,7 @@
         class:opacity-0={!card2Section2T}
         class:translate-x-0={card2Section2T}
         class:opacity-100={card2Section2T}
-        class="bg-dark2 shadow-xl p-6 rounded-2xl space-y-6 transition-all duration-700 ease-out transform"
+        class="bg-brown shadow-xl p-6 rounded-2xl space-y-6 transition-all duration-700 ease-out transform"
       >
         <h2
           class="font-primary text-xl md:text-2xl lg:text-3xl font-bold uppercase text-center mb-4"
@@ -335,58 +359,11 @@
         </h2>
 
         <!-- Data Profil Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 p-1 gap-6">
+        <div class="grid grid-cols-2 p-1 gap-6">
           <!-- Nama -->
-          <div class="flex flex-col items-center text-center">
-            <FontAwesomeIcon
-              icon={faUser}
-              class="text-secondary text-3xl mb-2"
-            />
-            <p
-              class="font-primary text-sm md:text-sm lg:text-md xl:text-xl break-words"
-            >
-              Aflah Mahdi Yazdi
-            </p>
-          </div>
-
-          <!-- Tanggal Lahir -->
-          <div class="flex flex-col items-center text-center">
-            <FontAwesomeIcon
-              icon={faCalendarAlt}
-              class="text-secondary text-3xl mb-2"
-            />
-            <p
-              class="font-primary text-sm md:text-sm lg:text-md xl:text-xl break-words"
-            >
-              22 Desember 2005
-            </p>
-          </div>
-
-          <!-- Email -->
-          <div class="flex flex-col items-center text-center">
-            <FontAwesomeIcon
-              icon={faEnvelope}
-              class="text-secondary text-3xl mb-2"
-            />
-            <p
-              class="font-primary text-sm md:text-[10px] lg:text-[10px] xl:text-lg break-words"
-            >
-              Diyaz.hal22@gmail.com
-            </p>
-          </div>
-
-          <!-- Telepon -->
-          <div class="flex flex-col items-center text-center">
-            <FontAwesomeIcon
-              icon={faPhone}
-              class="text-secondary text-3xl mb-2"
-            />
-            <p
-              class="font-primary text-sm md:text-sm lg:text-md xl:text-lg break-words"
-            >
-              +62-823-3304-4295
-            </p>
-          </div>
+          {#each profilItems as item (item.tulisan)}
+            <DataProfil {item} />
+          {/each}
         </div>
       </div>
     </div>
@@ -394,7 +371,7 @@
 
   <!-- Section 3 -->
   <section
-    class="w-full min-h-screen bg-dark2 px-6 md:px-16 lg:px-32 py-12 flex flex-col items-center gap-8 md:pt-30"
+    class="w-full min-h-screen bg-secondary px-6 md:px-16 lg:px-32 py-16 flex flex-col items-center gap-8 md:pt-30"
     id="section_3"
   >
     <div
@@ -403,7 +380,7 @@
       class:opacity-0={!card1Section3T}
       class:translate-x-0={card1Section3T}
       class:opacity-100={card1Section3T}
-      class="bg-dark4 shadow-light shadow-2xl/20 p-2 md:p-5 mb-10 w-60 md:w-70 lg:w-80 xl:w-100 2xl:w-120 text-center rounded-2xl shadow-xl transition-all duration-700 ease-out transform"
+      class="bg-brown shadow-light shadow-2xl/20 p-2 md:p-5 mb-10 w-60 md:w-70 lg:w-80 xl:w-100 2xl:w-120 text-center rounded-2xl shadow-xl transition-all duration-700 ease-out transform"
     >
       <h2
         class="font-primary text-3xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-extrabold text-light mb-2"
@@ -426,7 +403,7 @@
         <button>
           <FontAwesomeIcon
             icon={faGlobe}
-            class="text-secondary fa-5x md:fa-3x md:mb-3 hover:scale-115 transition-transform duration-300"
+            class="text-brown fa-5x md:fa-3x md:mb-3 hover:scale-115 transition-transform duration-300"
           />
         </button>
         <h2
@@ -435,7 +412,7 @@
           WEB Development
         </h2>
         <div
-          class="w-fit md:mt-1 md:w-80 bg-light3 p-6 rounded-2xl shadow-light shadow-2xl/25 flex flex-col justify-between flex-1 h-full"
+          class="w-fit md:mt-1 md:w-80 bg-brown p-6 rounded-2xl shadow-light shadow-2xl/25 flex flex-col justify-between flex-1 h-full"
         >
           <p
             class="font-display break-words w-full text-dark2 text-sm md:text-sm lg:text-md xl:text-lg 2xl:text-xl"
@@ -465,7 +442,7 @@
         <button>
           <FontAwesomeIcon
             icon={faObjectUngroup}
-            class="text-secondary fa-5x md:fa-3x md:mb-3 hover:scale-115 transition-transform duration-300"
+            class="text-brown fa-5x md:fa-3x md:mb-3 hover:scale-115 transition-transform duration-300"
           />
         </button>
         <h2
@@ -474,7 +451,7 @@
           Desain Grafis
         </h2>
         <div
-          class="w-fit md:w-80 bg-light3 p-6 rounded-2xl shadow-light shadow-2xl/25 flex flex-col justify-between flex-1 h-full"
+          class="w-fit md:w-80 bg-brown p-6 rounded-2xl shadow-light shadow-2xl/25 flex flex-col justify-between flex-1 h-full"
         >
           <p
             class="break-words w-full font-display text-dark2 text-sm md:text-sm lg:text-md xl:text-lg 2xl:text-xl"
@@ -503,7 +480,7 @@
         <button>
           <FontAwesomeIcon
             icon={faCameraAlt}
-            class="text-secondary fa-5x md:fa-3x md:mb-3 hover:scale-115 transition-transform duration-300"
+            class="text-brown fa-5x md:fa-3x md:mb-3 hover:scale-115 transition-transform duration-300"
           />
         </button>
         <h2
@@ -512,7 +489,7 @@
           Fotografi
         </h2>
         <div
-          class="w-fit md:w-80 bg-light3 p-6 rounded-2xl shadow-light shadow-2xl/25 flex flex-col justify-between flex-1 h-full"
+          class="w-fit md:w-80 bg-brown p-6 rounded-2xl shadow-light shadow-2xl/25 flex flex-col justify-between flex-1 h-full"
         >
           <p
             class="break-words w-full font-display text-dark2 text-sm md:text-sm lg:text-md xl:text-lg 2xl:text-xl"
@@ -534,7 +511,7 @@
 
   <!-- Section 4 -->
   <section
-    class="w-full min-h-screen bg-dark px-6 md:px-16 lg:px-32 py-12 flex flex-col items-center gap-8 md:pt-30 z-30"
+    class="w-full min-h-screen bg-secondary px-6 md:px-16 lg:px-32 py-20 flex flex-col items-center gap-8 md:pt-30 z-30"
     id="section_4"
   >
     <div
@@ -543,7 +520,7 @@
       class:opacity-0={!card1Section4T}
       class:translate-x-0={card1Section4T}
       class:opacity-100={card1Section4T}
-      class="bg-dark4 shadow-light shadow-2xl/20 p-5 md:p-7 mb-10 w-80 md:w-100 lg:w-120 xl:w-140 2xl:w-160 text-center rounded-2xl shadow-xl transition-all duration-700 ease-out transform"
+      class="bg-brown shadow-light shadow-2xl/20 p-5 md:p-7 mb-10 w-80 md:w-100 lg:w-120 xl:w-140 2xl:w-160 text-center rounded-2xl shadow-xl transition-all duration-700 ease-out transform"
     >
       <h2
         class="font-primary text-3xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-black text-light mb-2"
@@ -561,19 +538,14 @@
         class:opacity-0={!card2Section4T}
         class:translate-x-0={card2Section4T}
         class:opacity-100={card2Section4T}
-        class="w-full md:w-1/2 transition-all duration-700 ease-out transform"
+        class="w-full md:w-1/2 transition-all flex justify-center duration-700 ease-out transform"
       >
         <a
           href="https://github.com/MasYaaz"
           target="_blank"
           aria-label="Github"
         >
-          <img
-            loading="lazy"
-            alt="Github"
-            src="./images/github.svg"
-            class="w-60 h-fit invert fa-5x md:mb-3 hover:scale-115 transition-transform duration-300"
-          />
+          <FontAwesomeIcon icon={faGithub} class="text-[220px]"/>
         </a>
       </div>
 
@@ -606,7 +578,7 @@
       class:opacity-0={!card4Section4T}
       class:translate-x-0={card4Section4T}
       class:opacity-100={card4Section4T}
-      class="mt-5 md:mt-30 text-center text-light font-medium font-primary transition-all duration-700 ease-out transform"
+      class="mt-5 md:mt-30 text-center text-lg md:text-xl font-medium font-primary transition-all duration-700 ease-out transform"
     >
       -- Thanks for your attention --
     </p>
@@ -620,7 +592,7 @@
   ></div>
 
   <!-- Overlay Transparan -->
-  <div class="absolute inset-0 bg-white/60"></div>
+  <div class="absolute inset-0 bg-secondary/80"></div>
   <!-- Ubah ke bg-black/60 jika mau gelap -->
 
   <!-- Konten Footer -->

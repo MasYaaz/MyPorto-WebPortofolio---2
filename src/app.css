@@ -4,15 +4,10 @@
 @theme {
   --font-display: 'Montserrat', sans-serif;
   --font-primary: 'Montserrat Alternates', sans-serif;
-  --color-primary: #212529;
-  --color-secondary: #E9ECEF;
-  --color-light: #F8F9FA;
-  --color-light2: #DEE2E6;
-  --color-light3: #CED4DA;
-  --color-dark: #343A40;
-  --color-dark2: #495057;
-  --color-dark3: #6C757D;
-  --color-dark4: #ADB5BD;
+  --color-primary: #283618;
+  --color-secondary: #FEFAE0;
+  --color-brown: #DDA15E;
+  --color-green: #606C38;
 }
 
 html {
