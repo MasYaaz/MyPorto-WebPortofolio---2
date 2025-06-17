@@ -172,13 +172,13 @@
   });
 </script>
 
-<header>
+<header >
   <div
-    class="w-full fixed top-0 z-50 px-6 md:px-10 lg:px-24 xl:px-32 h-12 md:h-14 2xl:h-16 flex bg-primary justify-between"
+    class="fixed w-full top-0 z-50 px-6 md:px-10 lg:px-24 xl:px-32 h-14 md:h-16 2xl:h-20 flex bg-secondary shadow-lg justify-between"
   >
     <div class="basis-1/3 flex items-center">
       <img
-        src="./dark-theme.svg"
+        src="./light-theme.svg"
         alt="logo"
         class="w-15 md:w-20 lg:w-25 h-auto"
       />
@@ -186,12 +186,12 @@
 
     <!-- Tombol hamburger -->
     <button
-      class="md:hidden text-secondary"
+      class="md:hidden text-primary"
       on:click={toggleMenu}
       aria-label="tombol navbar"
     >
       <svg
-        class="w-6 h-6 text-secondary"
+        class="w-6 h-6 text-primary"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -210,8 +210,8 @@
       {#each navItems as item}
         <a
           href={"#" + item.id}
-          class="font-primary text-center mr-4 pb-1 text-[13px] md:text-[15px] lg:mr-10 w-25 tracking-[1px] text-secondary hover:text-light border-b-2 hover:scale-105 transition-transform duration-75"
-          class:border-secondary={halamanAktif === item.id}
+          class="font-primary text-center mr-4 pb-1 text-[13px] md:text-[15px] lg:mr-10 w-25 tracking-[1px] text-primary hover:text-green border-b-1 hover:scale-105 transition-transform duration-75"
+          class:border-primary={halamanAktif === item.id}
           class:scale-110={halamanAktif === item.id}
           class:border-transparent={halamanAktif !== item.id}
         >
@@ -223,12 +223,12 @@
     {#if menuTerbuka}
       <nav
         transition:slide={{ duration: 400 }}
-        class="absolute right-0 top-12 w-full bg-primary/90 px-4 pb-4 shadow-md md:hidden"
+        class="absolute right-0 top-12 w-full bg-secondary/90 px-4 pb-4 shadow-md md:hidden"
       >
         {#each navItems as item}
           <a
             href={"#" + item.id}
-            class="font-primary text-left flex border-b text-secondary p-2 justify-center"
+            class="font-primary text-left flex border-b text-primary p-2 justify-center"
             ><FontAwesomeIcon icon={item.icon} class="text-lg mr-2"/> {item.label}</a
           >
         {/each}
@@ -239,7 +239,7 @@
 <main>
   <!-- Section 1 -->
   <section
-    class="w-full flex flex-col-reverse md:flex-row px-6 md:px-10 lg:px-24 xl:px-32 items-center justify-between min-h-screen scroll-mt-12 relative z-0 overflow-hidden bg-cover bg-[url('./images/back.jpg')]"
+    class="w-full flex flex-col-reverse lg:flex-row px-6 md:px-10 lg:px-24 xl:px-32 items-center justify-between h-screen relative z-0 overflow-hidden bg-cover bg-[url('./images/back.jpg')]"
     id="section_1"
   >
     <div class="absolute inset-0 bg-secondary/80"></div>
@@ -247,7 +247,7 @@
     <!-- Gambar -->
     <div
       bind:this={gambarRef}
-      class="relative z-10 transition-all duration-700 ease-out transform md:basis-1/2 flex justify-center"
+      class="relative z-10 h-2/3 lg:h-screen transition-all duration-700 ease-out lg:basis-1/2 transform flex items-end justify-center"
       class:translate-y-100={!gambarTerlihat}
       class:opacity-0={!gambarTerlihat}
       class:translate-y-15={gambarTerlihat}
@@ -256,17 +256,17 @@
       <img
         src="./images/fullbody.png"
         alt="Foto"
-        class="h-[500px] sm:h-[800px] md:h-[600px] lg:h-[700px] xl:h-[850px] w-auto object-contain transition-all duration-200 hover:scale-110"
+        class="h-full lg:w-9/10 object-contain transition-all duration-200 hover:scale-110"
       />
     </div>
 
     <!-- Teks + Tombol -->
     <div
-      class="relative z-10 flex flex-col justify-center items-center md:items-start md:basis-1/2 text-center md:text-left mt-8 md:mt-0 space-y-4 px-4 sm:px-6"
+      class="relative h-1/3 2xl:h-screen lg:mt-10 2xl:mt-0 z-10 flex flex-col justify-center items-center text-center md:text-left mt-8 md:mt-10 space-y-4 px-4 sm:px-6 lg:basis-1/2"
     >
       <h1
         bind:this={gambarRef}
-        class="font-primary text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase font-bold transition-all duration-700 ease-out transform"
+        class="font-primary text-4xl sm:text-5xl md:text-6xl lg:text-7xl 2xl:text-8xl uppercase font-bold transition-all duration-700 ease-out transform"
         class:-translate-y-10={!gambarTerlihat}
         class:opacity-0={!gambarTerlihat}
         class:translate-y-15={gambarTerlihat}
@@ -276,7 +276,7 @@
       </h1>
       <h3
         bind:this={gambarRef}
-        class="font-primary font-medium text-base sm:text-lg md:text-xl lg:text-3xl uppercase tracking-[1.5px] transition-all duration-700 ease-out transform"
+        class="font-primary font-medium text-base sm:text-lg md:text-xl lg:text-2xl 2xl:text-3xl uppercase tracking-[1.5px] transition-all duration-700 ease-out transform"
         class:-translate-y-10={!gambarTerlihat}
         class:opacity-0={!gambarTerlihat}
         class:translate-y-10={gambarTerlihat}
@@ -300,7 +300,7 @@
 
   <!-- Section 2 -->
   <section
-    class="w-full min-h-screen bg-secondary px-6 md:px-10 lg:px-24 xl:px-32 py-16 md:py-16 lg:py-18 flex flex-col xl:flex-row items-start justify-center gap-10 md:gap-16"
+    class="w-full min-h-screen bg-secondary px-6 md:px-10 lg:px-24 xl:px-32 py-16 md:py-20 lg:py-24 flex flex-col xl:flex-row items-center justify-center gap-10 md:gap-16"
     id="section_2"
   >
     <!-- KIRI: Gambar -->
@@ -309,7 +309,7 @@
         src="./images/foto-personal.jpg"
         alt="Foto Personal"
         bind:this={aboutRef}
-        class="w-full aspect-square object-cover rounded-3xl shadow-xl transition-all duration-700 ease-out transform h-100 xl:h-full"
+        class="w-full aspect-square object-cover rounded-3xl shadow-xl transition-all duration-700 ease-out transform h-100 lg:h-full"
         class:-translate-x-24={!aboutTerlihat}
         class:opacity-0={!aboutTerlihat}
         class:translate-x-0={aboutTerlihat}
