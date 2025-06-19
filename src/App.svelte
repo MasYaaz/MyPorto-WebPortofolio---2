@@ -7,7 +7,6 @@
     faLinkedin,
   } from "@fortawesome/free-brands-svg-icons";
   import {
-    faCalendarAlt,
     faCameraAlt,
     faEnvelope,
     faGlobe,
@@ -16,16 +15,18 @@
     faUser,
     faSearch,
     faHome,
-    faPerson,
     faPenFancy,
     faBriefcase,
   } from "@fortawesome/free-solid-svg-icons";
   import { onMount, tick, onDestroy } from "svelte";
-  import { slide } from "svelte/transition";
+
+  // Komponen
+  import Navbar from "./lib/Navbar.svelte";
   import DataProfil from "./lib/DataProfil.svelte";
   import Sertifikat from "./lib/Sertifikat.svelte";
 
   let halamanAktif = "section_1";
+  // Tetap di sini karena ini adalah state utama yang menentukan status menu
   let menuTerbuka = false;
 
   // Refs
@@ -100,6 +101,7 @@
     }
 
     // Tutup menu mobile ketika discroll
+    // yang kemudian akan disinkronkan ke Navbar.svelte melalui bind:
     if (menuTerbuka) {
       menuTerbuka = false;
     }
@@ -166,70 +168,8 @@
   });
 </script>
 
-<header >
-  <div
-    class="fixed w-full top-0 z-50 px-6 md:px-10 lg:px-24 xl:px-32 h-14 md:h-16 2xl:h-20 flex bg-secondary shadow-lg justify-between"
-  >
-    <div class="basis-1/3 flex items-center">
-      <img
-        src="./light-theme.svg"
-        alt="logo"
-        class="w-15 md:w-20 lg:w-25 h-auto"
-      />
-    </div>
+<Navbar bind:halamanAktif bind:menuTerbuka />
 
-    <!-- Tombol hamburger -->
-    <button
-      class="md:hidden text-primary"
-      on:click={toggleMenu}
-      aria-label="tombol navbar"
-    >
-      <svg
-        class="w-6 h-6 text-primary"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M4 6h16M4 12h16M4 18h16"
-        />
-      </svg>
-    </button>
-
-    <!-- Ini Navbar dekstop -->
-    <nav class="hidden md:flex basis-2/3 p-2 items-center justify-end">
-      {#each navItems as item}
-        <a
-          href={"#" + item.id}
-          class="font-primary text-center mr-4 pb-1 text-[13px] md:text-[15px] lg:mr-10 w-25 tracking-[1px] text-primary hover:text-green border-b-1 hover:scale-105 transition-transform duration-75"
-          class:border-primary={halamanAktif === item.id}
-          class:scale-110={halamanAktif === item.id}
-          class:border-transparent={halamanAktif !== item.id}
-        >
-          {item.label}
-        </a>
-      {/each}
-    </nav>
-    <!-- Menu Mobile -->
-    {#if menuTerbuka}
-      <nav
-        transition:slide={{ duration: 400 }}
-        class="absolute right-0 top-12 w-full bg-secondary/90 px-4 pb-4 shadow-md md:hidden"
-      >
-        {#each navItems as item}
-          <a
-            href={"#" + item.id}
-            class="font-primary text-left flex border-b text-primary p-2 justify-center"
-            ><FontAwesomeIcon icon={item.icon} class="text-lg mr-2"/> {item.label}</a
-          >
-        {/each}
-      </nav>
-    {/if}
-  </div>
-</header>
 <main>
   <!-- Section 1 -->
   <section
