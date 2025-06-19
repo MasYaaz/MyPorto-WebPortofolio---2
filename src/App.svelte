@@ -23,7 +23,7 @@
   import { onMount, tick, onDestroy } from "svelte";
   import { slide } from "svelte/transition";
   import DataProfil from "./lib/DataProfil.svelte";
-  import { icon } from "@fortawesome/fontawesome-svg-core";
+  import Sertifikat from "./lib/Sertifikat.svelte";
 
   let halamanAktif = "section_1";
   let menuTerbuka = false;
@@ -118,14 +118,8 @@
         entries.forEach((entry) => {
           const isVisible = entry.isIntersecting;
 
-          if (entry.target === gambarRef) {
-            gambarTerlihat = isVisible;
-          }
-
-          if (entry.target === aboutRef) {
-            aboutTerlihat = isVisible;
-            if (isVisible) gambarTerlihat = false;
-          }
+          if (entry.target === gambarRef) gambarTerlihat = isVisible;
+          if (entry.target === aboutRef) aboutTerlihat = isVisible;
 
           if (entry.target === card1Section2R) card1Section2T = isVisible;
           if (entry.target === card2Section2R) card2Section2T = isVisible;
@@ -239,7 +233,7 @@
 <main>
   <!-- Section 1 -->
   <section
-    class="w-full flex flex-col-reverse lg:flex-row px-6 md:px-10 lg:px-24 xl:px-32 items-center justify-between h-screen relative z-0 overflow-hidden bg-cover bg-[url('./images/back.jpg')]"
+    class="w-full flex flex-col-reverse lg:flex-row px-6 md:px-10 lg:px-24 xl:px-32 items-center justify-between h-screen relative z-0 overflow-hidden bg-cover bg-[url('./images/back.webp')]"
     id="section_1"
   >
     <div class="absolute inset-0 bg-secondary/80"></div>
@@ -508,6 +502,8 @@
       </div>
     </div>
   </section>
+
+  <Sertifikat/>
 
   <!-- Section 4 -->
   <section
