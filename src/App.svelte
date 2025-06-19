@@ -14,9 +14,6 @@
     faPhone,
     faUser,
     faSearch,
-    faHome,
-    faPenFancy,
-    faBriefcase,
   } from "@fortawesome/free-solid-svg-icons";
   import { onMount, tick, onDestroy } from "svelte";
 
@@ -69,13 +66,6 @@
   ];
   // Observer
   let observer;
-
-  const navItems = [
-    { id: "section_1", label: "Home", icon: faHome },
-    { id: "section_2", label: "About Me", icon: faUser },
-    { id: "section_3", label: "My Skills", icon:faPenFancy},
-    { id: "section_4", label: "Portofolio", icon: faBriefcase },
-  ];
 
   function handleScroll() {
     const posisi = window.scrollY + 100; // tambahkan offset bila ada navbar
